@@ -20,18 +20,18 @@ for i in `cat hosts`; do
 		echo "deployment started..."
        		## copy conf files
 		echo "copy files to server"
-       		scp $i.* ubuntu@3.89.8.33  :/tmp/                               #Ip 
+       		scp $i.* ubuntu@34.203.245.252:/tmp/                               #Ip 
        		## create document root directory
 		echo "create doc root dir to server"
-       		ssh -t ubuntu@3.89.8.33   sudo mkdir /var/www/html/$i          #ip
+       		ssh -t ubuntu@34.203.245.252   sudo mkdir /var/www/html/$i          #ip
        		## move conf and web file to their localtion
 
 		echo "move conf and html file"
-       		ssh -t ubuntu@3.89.8.33  sudo mv /tmp/$i.conf /etc/apache2/sites-enabled/$i.conf
-       		ssh -t ubuntu@3.89.8.33  sudo mv /tmp/$i.html /var/www/html/$i/index.html
+       		ssh -t ubuntu@34.203.245.252  sudo mv /tmp/$i.conf /etc/apache2/sites-enabled/$i.conf
+       		ssh -t ubuntu@34.203.245.252  sudo mv /tmp/$i.html /var/www/html/$i/index.html
        		##restart apache 
        		echo "reload apache"
-       		ssh -t ubuntu@3.89.8.33   sudo systemctl reload apache2
+       		ssh -t ubuntu@34.203.245.252   sudo systemctl reload apache2
        		echo "$i"  >> completed-setup.db
     fi
 echo -e "\n deployment complted"    
