@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Stickers</title>
+</head>
+<body>
+
+    <h1>Pardhuman - Devops Engineer </h1>
+    
+    <!-- Love sticker image -->
+    <img src="love_sticker.jpg" alt="Love Sticker">
+
+</body>
+</html>
