@@ -14,7 +14,7 @@ for i in `cat hosts`; do
 		sed -i "s/SERVERNAME/$i/" $i.conf
         	#create html
 		echo "create html file"
-        	echo "<h1>Hello $i  "  > $i.html	
+        	echo "$(cat myhtml.file) $i  "  > $i.html	
 
        		#deploy setup
 		echo "deployment started..."
