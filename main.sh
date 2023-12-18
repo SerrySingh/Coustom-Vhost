@@ -1,5 +1,5 @@
 echo "checking diff"
-dos2unix hosts  # Convert hosts file to Unix-style line endings
+/usr/bin/dos2unix hosts  # Convert hosts file to Unix-style line endings
 for i in $(cat hosts); do
     setupcompleted=$(grep ^$i completed-setup.db)
     echo "---test $setupcompleted test---"
