@@ -1,6 +1,6 @@
 echo "checking diff"
-/usr/bin/dos2unix hosts  # Convert hosts file to Unix-style line endings
-for i in $(cat hosts); do
+cat hosts | tr -d '\r' > hosts_unix
+for i in $(cat hosts_unix); do
     setupcompleted=$(grep ^$i completed-setup.db)
     echo "---test $setupcompleted test---"
     if [ -z "$setupcompleted" ]; then
@@ -27,17 +27,22 @@ for i in $(cat hosts); do
         ## create document root directory
         echo "create doc root dir to server"
         ssh -T -o StrictHostKeyChecking=no ubuntu@34.203.245.252 sudo mkdir /var/www/html/$i #ip
-        ## move conf and web file to their location
 
+        ## move conf and web file to their location
         echo "move conf and html file"
         ssh -T -o StrictHostKeyChecking=no ubuntu@34.203.245.252 sudo mv /tmp/$i.conf /etc/apache2/sites-enabled/$i.conf
         ssh -T -o StrictHostKeyChecking=no ubuntu@34.203.245.252 sudo mv /tmp/$i.html /var/www/html/$i/index.html
-        ## restart apache
+
+        ## restart apache if it's not active
         echo "reload apache"
+        if ! ssh -T -o StrictHostKeyChecking=no ubuntu@34.203.245.252 sudo systemctl is-active apache2; then
+            ssh -T -o StrictHostKeyChecking=no ubuntu@34.203.245.252 sudo systemctl start apache2
+        fi
+
+        ## reload apache
         ssh -T -o StrictHostKeyChecking=no ubuntu@34.203.245.252 sudo systemctl reload apache2
         echo "$i" >>completed-setup.db
     fi
     echo -e "\n deployment completed"
 done
-
 
