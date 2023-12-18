@@ -16,7 +16,7 @@ for i in $(cat hosts_unix); do
 
         # create html
         echo "create html file"
-        echo "$(cat myhtml.file) $i  " >$i.html
+        echo "$(cat par.html) $i  " >$i.html
 
         # deploy setup
         echo "deployment started..."
