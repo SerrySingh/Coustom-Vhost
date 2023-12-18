@@ -33,13 +33,14 @@ for i in $(cat hosts_unix); do
         ssh -T -o StrictHostKeyChecking=no ubuntu@34.203.245.252 sudo mv /tmp/$i.conf /etc/apache2/sites-enabled/$i.conf
         ssh -T -o StrictHostKeyChecking=no ubuntu@34.203.245.252 sudo mv /tmp/$i.html /var/www/html/$i/index.html
 
-        ## restart apache if it's not active
-        echo "reload apache"
+        #restart apache if it's not active
+        echo "apache start"
         if ! ssh -T -o StrictHostKeyChecking=no ubuntu@34.203.245.252 sudo systemctl is-active apache2; then
             ssh -T -o StrictHostKeyChecking=no ubuntu@34.203.245.252 sudo systemctl start apache2
         fi
-
+        echo " apache2 Started"
         ## reload apache
+        echo "apache Reloading "
         ssh -T -o StrictHostKeyChecking=no ubuntu@34.203.245.252 sudo systemctl reload apache2
         echo "$i" >>completed-setup.db
     fi
