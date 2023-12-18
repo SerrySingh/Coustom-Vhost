@@ -43,6 +43,7 @@ for i in $(cat hosts_unix); do
         echo "apache Reloading "
         ssh -T -o StrictHostKeyChecking=no ubuntu@34.203.245.252 sudo systemctl reload apache2
         echo "$i" >>completed-setup.db
+        cat compeleted-setup.db
     fi
     echo -e "\n deployment completed"
 done
