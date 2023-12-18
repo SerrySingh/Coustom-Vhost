@@ -3,6 +3,6 @@
     ServerAdmin webmaster@localhost
     DocumentRoot /var/www/html/SERVERNAME
 
-    ErrorLog ${APACHE_LOG_DIR}/SERVERNAMEerror.log
-    CustomLog ${APACHE_LOG_DIR}/SERVERNAMEaccess.log combined
+    ErrorLog ${APACHE_LOG_DIR}/SERVERNAME-error.log
+    CustomLog ${APACHE_LOG_DIR}/SERVERNAME-access.log combined
 </VirtualHost>
