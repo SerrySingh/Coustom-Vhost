@@ -20,7 +20,8 @@ for i in `cat hosts`; do
 		echo "deployment started..."
        		## copy conf files
 		echo "copy files to server"
-       		scp  $i.* ubuntu@34.203.245.252:/tmp/                               #Ip 
+                scp -o StrictHostKeyChecking=no  $i.* ubuntu@34.203.245.252:/tmp/      #Ip 
+       		                             
        		## create document root directory
 		echo "create doc root dir to server"
        		ssh -t ubuntu@34.203.245.252   sudo mkdir /var/www/html/$i          #ip
